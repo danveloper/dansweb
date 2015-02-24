@@ -1,7 +1,7 @@
 install: true
 language: java
 script:
-  - ./gradlew clean buildDeb
+- ./gradlew clean buildDeb
 cache:
   directories:
   - $HOME/.gradle
@@ -15,8 +15,12 @@ env:
   - REPO_NAME=$(echo $TRAVIS_REPO_SLUG | cut -d'/' -f2)
   - secure: a3Tc0pcrpz71Qz7qC9p0ENVD+jzHAzytNL+C1o1RtiCDXCxbmoqJshqUxxCBxfUJE3RhCnZXAxw7gtANpP/XR9O/4n7CjQDlmMD8DH6kWgfjMgKtN9/u9Hw/aajV6JawZIZ1w5aEBteEtLvVXeTBJxcqJ1uI0biGOzfvOw1Uqcw=
   - secure: ZDFkRgBH2o5zP5Xe2DD5g1Af2aH7QqEyCeeJ/ePMHttM1FFL3P6sScaI9lsySX7bfTSVRwSODOlzeXukLsyHR4DqZv7LW3gCda+JguZ7zgbwUlygVWOniHvijv83dfhV8zrHBOfPz3oEzM+5h4TpdP6mHgRwRzG7gA13UO+TIB0=
+  - secure: CjcvtaBspjIOhLP4M/pwMEn7KqW2H7+3I8ObtWiGKiLxua4HDu4HxqeIpkdWt/r0AzZ89tbArJZSwPHbCKdeSAvT8Xyt9s0XkSmI/Ayhp62K+7gQk5+AU68CAGhp8igNP37DKtq4ajaNWrceSewfacUsWVuRheF0BA+Dqm+KlkI=
+  - secure: Qxipr/lDDSMU+De3etYdtdlfv04WGyjU743NkfozYuITjXGEj8/AloMOc1xZuK0Pvk2O1VQTOf/dBGiDczlzLW6AlqOWg1SYTH7oEjF8wYIyh5QZNVmShMZGPeOrFxpmpm4XN5JnDYn2O5eMGd3b7xhzxbn73cXVs2XAxVqpF3M=
 sudo: false
 before_script:
-- "curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install | bash"
+- curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install |
+  bash
 after_success:
-- "$HOME/bin/artifacts upload --working-dir build/distributions -t artifacts/$REPO_NAME/travis/$TRAVIS_BUILD_NUMBER $(find . -iname '*.deb')"
+- $HOME/bin/artifacts upload --working-dir build/distributions -t artifacts/$REPO_NAME/travis/$TRAVIS_BUILD_NUMBER
+  $(find . -iname '*.deb')
